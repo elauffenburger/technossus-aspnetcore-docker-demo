@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  server-one:
+    container_name: server-one
+    build:
+      context: .
+      dockerfile: local.dockerfile
+    volumes:
+      - .:/app
+    ports: 
+      - 8080:5000
+    networks: 
+      - test-network
+    links:
+      - server-two
+  
+  server-two:
+    container_name: server-two
+    build:
+      context: ${server_two_dir}
+      dockerfile: local.dockerfile
+    volumes:
+      - ${server_two_dir}:/app
+    ports:
+      - 8081:5000
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge

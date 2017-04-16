@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: local.dockerfile
+    ports: 
+      - 8080:5000
+    volumes:
+      - .:/app
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge

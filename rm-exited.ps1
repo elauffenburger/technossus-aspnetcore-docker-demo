@@ -1,0 +1,1 @@
+docker rm $(docker ps -a | findstr Exited | %{ ([regex]"(.*?)\s+.*$").Match($_).Groups[1].value })
