@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace server_one
 {
@@ -29,6 +30,15 @@ namespace server_one
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddOptions()
+                .Configure<ServerTwoConfig>(Configuration.GetSection("servertwo"));
+
+            services.AddTransient<FortunesService>(ctx =>
+            {
+                var config = ctx.GetService<IOptionsSnapshot<ServerTwoConfig>>().Value;
+                return new FortunesService(config.ApiUrl);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

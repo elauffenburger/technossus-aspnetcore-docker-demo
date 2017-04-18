@@ -4,10 +4,10 @@ services:
   server-one:
     container_name: server-one
     build:
-      context: .
+      context: ${SERVER_ONE_SRC} 
       dockerfile: local.dockerfile
     volumes:
-      - .:/app
+      - ${SERVER_ONE_SRC}:/app
     ports: 
       - 8080:5000
     networks: 
@@ -18,10 +18,10 @@ services:
   server-two:
     container_name: server-two
     build:
-      context: ${server_two_dir}
+      context: ${SERVER_TWO_SRC}
       dockerfile: local.dockerfile
     volumes:
-      - ${server_two_dir}:/app
+      - ${SERVER_TWO_SRC}:/app
     ports:
       - 8081:5000
     networks:
