@@ -4,12 +4,12 @@ services:
   server:
     container_name: server
     build:
-      context: .
-      dockerfile: local.dockerfile
+      context: ${SERVER_TWO_SRC}
+      dockerfile: .docker/local.dockerfile
     ports: 
       - 8080:5000
     volumes:
-      - .:/app
+      - ${SERVER_TWO_SRC}:/app
     networks:
       - test-network
 

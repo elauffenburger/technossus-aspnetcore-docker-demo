@@ -5,7 +5,7 @@ services:
     container_name: server-one
     build:
       context: ${SERVER_ONE_SRC} 
-      dockerfile: local.dockerfile
+      dockerfile: .docker/local.dockerfile
     volumes:
       - ${SERVER_ONE_SRC}:/app
     ports: 
@@ -19,7 +19,7 @@ services:
     container_name: server-two
     build:
       context: ${SERVER_TWO_SRC}
-      dockerfile: local.dockerfile
+      dockerfile: .docker/local.dockerfile
     volumes:
       - ${SERVER_TWO_SRC}:/app
     ports:

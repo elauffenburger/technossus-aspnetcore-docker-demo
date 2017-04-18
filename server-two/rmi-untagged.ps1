@@ -1,1 +1,0 @@
-docker rmi $(docker images | findstr "<none>" | %{ ([regex]".*?\s+.*?\s+(.*?)\s+.*$").Match($_).Groups[1].value })

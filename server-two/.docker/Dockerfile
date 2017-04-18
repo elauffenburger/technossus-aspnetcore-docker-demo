@@ -5,7 +5,8 @@ WORKDIR /app
 
 RUN ["dotnet", "restore"]
 
-EXPOSE 5000
-ENV ASPNETCORE_URLS http://*:5000
+EXPOSE 80
+EXPOSE 443
+ENV ASPNETCORE_URLS http://*:80;https://*:443
 
 ENTRYPOINT ["dotnet", "run"]
